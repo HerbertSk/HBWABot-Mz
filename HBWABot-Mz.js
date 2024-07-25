@@ -269,9 +269,6 @@ function removeFile(FilePath){
  };
   
 
-const replyherbertstyle = (teks) => {
- HBWABotMz.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"showAdAttribution": true, "containsAutoReply": true, "title": `${global.botname}`,"body": `SUB HBMods OFC`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./asset/image/HBWABot.png`),"sourceUrl": `https://youtube.com/@HBMods_Channel`}}}, { quoted: m})
-}
 const replyhbvip = (teks,bet,lonuirawh) => {
  HBWABotMz.sendMessage(m.chat,{ text: teks,contextInfo:{
 mentionedJid:[bet],
@@ -647,35 +644,81 @@ if (isCmd && (block1.includes(m.sender) || block1.includes(m.from))) {
     return 
 }
 
- // Check if the message is from Baileys and not sent by the bot itself
-    const patterns = [
-        'ꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾ',
-        '🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥',
-        'ۚ۫ۨۚ۫ۨۚ۫ۨۖۗۡۖۘۗۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۖۗۡۖۘۗۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۖۗۡۖۘۗۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۖۗۡۖۘۗۚ۫ۨۚ۫ۨۚ۫',
-        '🚻.*~8~*.-*~@888888~*.💊.*😈.*~9~*.-*~@9999999~*.🔥.*',
-        '~_*@94786859370*_~ ~_*@6282189885009*_~ ~_*@62895338123500*_~ ~_*@6285866316854*_~ ~_*@201159634926*_~ ~_*@201158302336*_~ ~_*@6285348244140*_~ ~_*@6288212643727*_~ ~_*',
-        '࡙࡙࡙࡙࡙࡙࡙࡙࡙࡛࡛࡛࡛࡛࡛࡛࡙࡙࡙࡙࡙࡛࡛︫︫︫︫︫︫︫︫︫︫࡛࡛࡛࡙࡙𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬؁࡙࡙࡙࡙࡙࡙࡙࡛࡛࡛࡛࡛࡙࡙࡛࡛࡛𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬',
-        'ن؃؄ٽ؂ن؃؄ٽ؂ن؃؄؂ن؃؄ٽ؂',
-'ڳ                                                                                                                                                                                                                                                ڳ                                                                      ﷼',
-        '᱃ֻࣰࣱࣱࣱٍ᳕͙͙ࣹ͙ࣹ͙ࣩ̫̫᳕͙᳕͙ࣹ͙̫ࣩ̈٘ͧ٘ۛ٘̈ͧ̈̈̃ۡۛ̈᱃ֻࣰࣱࣱࣱٍ᳕͙͙ࣹ͙ࣹ͙ࣩ̫̫᳕͙᳕͙ࣹ͙̫ࣩ̈٘ͧ٘ۛ٘̈ͧ̈̈̃ۡۛ̈᳓ࣰًًًًً᳕ܾࣶࣶ֖֖᷽ۡ᪳ࣧࣧ᪳́ࣼ᳚᪳־᱃ֻࣰࣱࣱࣱٍ᳕͙͙ࣹ͙ࣹ͙ࣩ̫̫᳕͙᳕͙ࣹ͙̫ࣩ̈٘ͧ٘ۛ٘̈ͧ̈̈̃ۡۛ̈᳓ࣰًًًًً᳕ܾࣶࣶ֖֖᷽ۡ᪳ࣧࣧ᪳́ࣼ᳚᪳־᱃ࣰࣱٍ᳕͙͙ࣹ͙ࣹ͙ࣩ̈٘ͧ٘ۛ٘̈ͧ̈̈̃',
-        '@ 0 * , * ؂ 💩 󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳* , @99990   * , * 司 ⳰⳰z e t s * , * @ 0 * , * @ 0 * , * ؂ 🔥 * , @99990  * , * 個 ⳰ ⳰ z e t s  * ,  * @ 0 * , * ؂ 💩 󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳* , @99990   * , * 司 ⳰⳰z e t s * , * @ 0 * , * @ 0 * , * ؂ 🔥 * , @99990  * , * 個 ⳰ ⳰ z e t s  * ,  * @ 0 * , * ؂ 💩 󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳* , @99990   * , * 司 ⳰⳰z e t s * , * @ 0 * , * @ 0 * , * ؂ 🔥 * , @99990  * , * 個 ⳰ ⳰ z e t s  * ,  * @ 0 * , * ؂ 💩 󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳* , @99990   * , *'
-    ];
-    const textLower2 = m.text.toLowerCase();
-    const isBugBotDetected = patterns.some(pattern => textLower2.includes(pattern));
-
-    if (isBugBotDetected) {
-        await dodoi(`*⚠️Bug Detected⚠️*\nEnjoy Your Bug Bot`); // Sends a notification about BugBot detection
-        await HBWABotMz.sendMessage(m.chat, { text: `${text}` }); // Forwards the quoted message
-        await HBWABotMz.sendMessage(m.chat, { delete: m.key }); // Deletes the current message
-        await HBWABotMz.updateBlockStatus(m.chat, 'block'); // Blocks the user
-    } return
-
 
 const dailylimit = () => {
- dodoi(`He featurs hi hman i duh chuan 💎50 i neih a ngai!!.\nBot rawn hmang thar tur i nih chuan Limit tiin type rawh, ti chuan bot hman theihna tur 💎500 i dawng ang, emaw i thiante in thawn tir rawh`)
- }
+    let messageContent = {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: `He featurs hi hman i duh chuan 💎50 i neih a ngai!!.\nBot rawn hmang thar tur i nih chuan Limit tih button khu hmet rawh, ti chuan bot hman theihna tur 💎500 i dawng ang, emaw i thiante in thawn tir rawh`
+                    }),
+                    footer: proto.Message.InteractiveMessage.Footer.create({
+                        text: botname
+                    }),
+                    header: proto.Message.InteractiveMessage.Header.create({
+                        hasMediaAttachment: false
+                    }),
+                    nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                        buttons: [
+                            {
+                                name: "quick_reply",
+                                buttonParamsJson: JSON.stringify({
+                                    display_text: "Limit",
+                                    id: `limit`
+                                })
+                            }
+                        ]
+                    })
+                })
+            }
+        }
+    };
+
+    let msgs = generateWAMessageFromContent(m.chat, messageContent, { quoted: m });
+    return await HBWABotMz.relayMessage(m.chat, msgs.message, {});
+};
+
  const replyvip = () => {
- dodoi(`> I info ah VIP free trial a 0 tawh\nHe features hi hman chhunzawm i duh chuan VIP member i nih a ngai. VIP 👑 member nih theih dan i hriat duh chuan *buyvip* tih lo type rawh`)
+ let messageContent = {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: `> I info ah VIP free trial a 0 tawh\nHe features hi hman chhunzawm i duh chuan VIP member i nih a ngai. VIP 👑 member nih theih dan i hriat duh chuan *buyvip* tih khu hmet rawh`
+                    }),
+                    footer: proto.Message.InteractiveMessage.Footer.create({
+                        text: botname
+                    }),
+                    header: proto.Message.InteractiveMessage.Header.create({
+                        hasMediaAttachment: false
+                    }),
+                    nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                        buttons: [
+                            {
+                                name: "quick_reply",
+                                buttonParamsJson: JSON.stringify({
+                                    display_text: "BuyVip",
+                                    id: `buyvi`
+                                })
+                            }
+                        ]
+                    })
+                })
+            }
+        }
+    };
+
+    let msgs = generateWAMessageFromContent(m.chat, messageContent, { quoted: m });
+    return await HBWABotMz.relayMessage(m.chat, msgs.message, {});
  }
  
 const loadingimg = ('https://raw.githubusercontent.com/HBMods-OFC/Data1/master/HBWABot-Mz/LoadingImg.json')
@@ -964,10 +1007,10 @@ _*Note :*_ VIP member nih ve i duh chuan fee hi i pek a ngaia, i pek hmain Creat
 
 ➖➖➖➖➖➖➖➖
 
-• ₹20 in = *1 month Vip membership 👑*
-• ₹40 in = *2 month Vip membership 👑*
-• ₹50 in = *3 month Vip membership 👑*
-• ₹100 in = *1 year Vip membership 👑*
+• ₹50 in = *1 month Vip membership 👑*
+• ₹80 in = *2 month Vip membership 👑*
+• ₹100 in = *3 month Vip membership 👑*
+• ₹250 in = *1 year Vip membership 👑*
 
 *GPay: 8416093656*
 *UPI Pay:* herbertlalngaihawma@okaxis`
@@ -1009,10 +1052,10 @@ _*Note :*_ VIP member nih ve i duh chuan fee hi i pek a ngaia, i pek hmain Creat
 
 ➖➖➖➖➖➖➖➖
 
-• ₹20 in = *1 month Vip membership 👑*
-• ₹40 in = *2 month Vip membership 👑*
-• ₹50 in = *3 month Vip membership 👑*
-• ₹100 in = *1 year Vip membership 👑*
+• ₹50 in = *1 month Vip membership 👑*
+• ₹80 in = *2 month Vip membership 👑*
+• ₹100 in = *3 month Vip membership 👑*
+• ₹250 in = *1 year Vip membership 👑*
 
 *GPay: 8416093656*
 *UPI Pay:* herbertlalngaihawma@okaxis`
@@ -2175,9 +2218,93 @@ const enm = `_*Note*_\n*If you don't have any limit, you cannot use my features 
     var bawng7 = `${enm}`
     var bawng8 = await mizo_tawnga_translate_na.translate(bawng5, bawng6, bawng7);
      if (global.default_language) {
-            HBWABotMz.sendMessage(from, { 
-text: `*Bot InFo*
-*✑ Vawiin :* ${vawiinni2}
+     let msg = generateWAMessageFromContent(from, {
+  viewOnceMessage: {
+    message: {
+        "messageContextInfo": {
+          "deviceListMetadata": {},
+          "deviceListMetadataVersion": 2
+        },
+        interactiveMessage: proto.Message.InteractiveMessage.create({
+          body: proto.Message.InteractiveMessage.Body.create({
+            text: `${botname} *Bot InFo*`
+          }),
+          footer: proto.Message.InteractiveMessage.Footer.create({
+            text: `*✑ Vawiin :* ${vawiinni2}
+*✑ Date :* ${kumtin}
+*✑ Version :* 6.6.0
+*✑ User :* ${ownernumber}
+*✑ Limit :* ${balance.wallet} 💎
+*✑ Vip :* ${aActiveEm}
+*✑ Runtime :* ${runtime(process.uptime())}
+*✑ Creator :* Herbert Suantak
+${lusm}͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
+╭═══════════┈
+┃𒆜┌───┈
+┃𒆜│vipmenu
+┃𒆜│allmenu
+┃𒆜│aimenu
+┃𒆜│mizomenu
+┃𒆜│downloadmenu
+┃𒆜│groupmenu
+┃𒆜│ownermenu
+┃𒆜│stickermenu
+┃𒆜│stalkermenu
+┃𒆜│unbanmenu
+┃𒆜│othermenu
+┃𒆜└───────────┈ 
+╰════════════──┈`
+          }),
+          header: proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./asset/image/HBWABot.png')}, { upload: HBWABotMz.waUploadToServer})), 
+                  title: ``,
+                  gifPlayback: true,
+                  subtitle: ownername,
+                  hasMediaAttachment: false  
+                }),
+          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+    buttons: [
+        {
+            name: "cta_url",
+            buttonParamsJson: JSON.stringify({
+                display_text: `${buttonyt}`,
+                url: `${buttonyturl}`,
+                merchant_url: "https://www.google.com"
+            })
+        },
+        {
+            name: "cta_url",
+            buttonParamsJson: JSON.stringify({
+                display_text: `${buttonig}`,
+                url: `${buttonigurl}`,
+                merchant_url: "https://www.google.com"
+            })
+        }
+    ]
+})
+        })
+    }
+  }
+}, { quoted: m })
+
+await HBWABotMz.relayMessage(msg.key.remoteJid, msg.message, {
+  messageId: msg.key.id
+})
+    } else {
+         if (global.mtl_language) {
+        let msg = generateWAMessageFromContent(from, {
+  viewOnceMessage: {
+    message: {
+        "messageContextInfo": {
+          "deviceListMetadata": {},
+          "deviceListMetadataVersion": 2
+        },
+        interactiveMessage: proto.Message.InteractiveMessage.create({
+          body: proto.Message.InteractiveMessage.Body.create({
+            text: `*${botname} Bot InFo*`
+          }),
+          footer: proto.Message.InteractiveMessage.Footer.create({
+            text: `*✑ Vawiin :* ${vawiinni2}
 *✑ Date :* ${kumtin}
 *✑ Version :* 5.6.0
 *✑ User :* ${ownernumber}
@@ -2202,63 +2329,43 @@ ${lusm}͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏�
 ┃𒆜│unbanmenu
 ┃𒆜│othermenu
 ┃𒆜└───────────┈ 
-╰════════════──┈ `,
-contextInfo:{
-externalAdReply:{ 
-showAdAttribution: true,
-containsAutoReply: true,
-renderLargerThumbnail: true,
-title: `${global.botname}`,
-thumbnail : menuthla,
-mediaType: 1,
-mediaUrl: ``,
-sourceUrl: ``
-}
-}
-},{quoted:m})
-    } else {
-         if (global.mtl_language) {
-        HBWABotMz.sendMessage(from, { 
-text: `*Bot InFo*
-*✑ Vawiin :* ${vawiinni2}
-*✑ Date :* ${kumtin}
-*✑ Version :* 5.6.0
-*✑ User :* ${ownernumber}
-*✑ Limit :* ${balance.wallet} 💎
-*✑ Vip :* ${aActiveEm}
-*✑ Runtime :* ${runtime(process.uptime())}
-*✑ Creator :* Herbert Suantak
-${bawng8}͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏
-╭═══════════┈
-┃𒆜┌───┈
-┃𒆜│vipmenu
-┃𒆜│allmenu
-┃𒆜│aimenu
-┃𒆜│mizomenu
-┃𒆜│downloadmenu
-┃𒆜│groupmenu
-┃𒆜│ownermenu
-┃𒆜│photooxymenu
-┃𒆜│ephoto360menu
-┃𒆜│stickermenu
-┃𒆜│stalkermenu
-┃𒆜│unbanmenu
-┃𒆜│othermenu
-┃𒆜└───────────┈ 
-╰════════════──┈ `,
-contextInfo:{
-externalAdReply:{ 
-showAdAttribution: true,
-containsAutoReply: true,
-renderLargerThumbnail: true,
-title: `${global.botname}`,
-thumbnail : menuthla,
-mediaType: 1,
-mediaUrl: ``,
-sourceUrl: ``
-}
-}
-},{quoted:m})
+╰════════════──┈`
+          }),
+          header: proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./asset/image/HBWABot.png')}, { upload: HBWABotMz.waUploadToServer})), 
+                  title: ``,
+                  gifPlayback: true,
+                  subtitle: ownername,
+                  hasMediaAttachment: false  
+                }),
+          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+    buttons: [
+        {
+            name: "cta_url",
+            buttonParamsJson: JSON.stringify({
+                display_text: `${buttonyt}`,
+                url: `${buttonyturl}`,
+                merchant_url: "https://www.google.com"
+            })
+        },
+        {
+            name: "cta_url",
+            buttonParamsJson: JSON.stringify({
+                display_text: `${buttonig}`,
+                url: `${buttonigurl}`,
+                merchant_url: "https://www.google.com"
+            })
+        }
+    ]
+})
+        })
+    }
+  }
+}, { quoted: m })
+
+await HBWABotMz.relayMessage(msg.key.remoteJid, msg.message, {
+  messageId: msg.key.id
+})
     }
 }
 }
@@ -2371,113 +2478,7 @@ var HBLoadingmenu = [
 ┃𒆜│bumhmang ber
 ┃𒆜│lerh ber
 ┃𒆜│luck ber
-┃𒆜│zei ber
-┃𒆜│nsfw 
-┃𒆜└───────────┈ 
-╰══════════════𖡛
-
-*╭═══❏ PhotoOxy Maker ❏*
-┃𒆜┌───┈
-┃𒆜│shadow
-┃𒆜│write
-┃𒆜│romantic
-┃𒆜│burnpaper 
-┃𒆜│smoke
-┃𒆜│narutobanner
-┃𒆜│love
-┃𒆜│undergrass 
-┃𒆜│doublelove
-┃𒆜│coffecup 
-┃𒆜│underwaterocean 
-┃𒆜│smokyneon 
-┃𒆜│starstext 
-┃𒆜│rainboweffect 
-┃𒆜│balloontext 
-┃𒆜│metalliceffect 
-┃𒆜│embroiderytext 
-┃𒆜│flamingtext 
-┃𒆜│stonetext 
-┃𒆜│writeart 
-┃𒆜│summertext ??
-┃𒆜│wolfmetaltext 
-┃𒆜│nature3dtext 
-┃𒆜│rosestext 
-┃𒆜│naturetypography 
-┃𒆜│quotesunder 
-┃𒆜│shinetext 
-┃𒆜└───────────┈ 
-╰══════════════𖡛
-*╭═══❏ Ephoto360 Maker ❏*
-┃𒆜┌───┈
-┃𒆜│glitchtext 
-┃𒆜│writetext 
-┃𒆜│advancedglow 
-┃𒆜│typographytext 
-┃𒆜│pixelglitch 
-┃𒆜│neonglitch 
-┃𒆜│flagtext 
-┃𒆜│flag3dtext 
-┃𒆜│deletingtext 
-┃𒆜│blackpinkstyle 
-┃𒆜│glowingtext 
-┃𒆜│underwatertext 
-┃𒆜│logomaker 
-┃𒆜│cartoonstyle 
-┃𒆜│papercutstyle 
-┃𒆜│watercolortext 
-┃𒆜│effectclouds 
-┃𒆜│blackpinklogo 
-┃𒆜│gradienttext 
-┃𒆜│summerbeach 
-┃𒆜│luxurygold 
-┃𒆜│multicoloredneon 
-┃𒆜│sandsummer 
-┃𒆜│galaxywallpaper 
-┃𒆜│1917style 
-┃𒆜│makingneon 
-┃𒆜│royaltext 
-┃𒆜│freecreate 
-┃𒆜│galaxystyle 
-┃𒆜│lighteffects 
-┃𒆜└───────────┈ 
-╰══════════════𖡛
-
-*╭═══❏ Anime NSFW ❏*
-┃𒆜┌───┈
-┃𒆜│leakout
-┃𒆜│hentai 
-┃𒆜│gifhentai 
-┃𒆜│gifblowjob 
-┃𒆜│hentaivid 
-┃𒆜│hneko 
-┃𒆜│nwaifu 
-┃𒆜│animespank 
-┃𒆜│trap 
-┃𒆜│gasm 
-┃𒆜│ahegao 
-┃𒆜│ass 
-┃𒆜│bdsm 
-┃𒆜│blowjob 
-┃𒆜│cuckold 
-┃𒆜│cum 
-┃𒆜│milf 
-┃𒆜│eba 
-┃𒆜│ero 
-┃𒆜│femdom 
-┃𒆜│foot 
-┃𒆜│gangbang 
-┃𒆜│glasses 
-┃𒆜│jahy 
-┃𒆜│masturbation 
-┃𒆜│manga 
-┃𒆜│neko-hentai 
-┃𒆜│neko-hentai2 
-┃𒆜│nsfwloli 
-┃𒆜│orgy 
-┃𒆜│panties
-┃𒆜│pussy 
-┃𒆜│xnxxsearch 
-┃𒆜│xnxxdl 
+┃𒆜│zei ber 
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛
 
@@ -2531,7 +2532,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -2585,7 +2586,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -2648,12 +2649,11 @@ var HBLoadingmenu = [
 ┃𒆜│bumhmang ber
 ┃𒆜│lerh ber
 ┃𒆜│luck ber
-┃𒆜│zei ber
-┃𒆜│nsfw 
+┃𒆜│zei ber 
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -2691,7 +2691,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -2732,7 +2732,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -2807,7 +2807,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -2854,7 +2854,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -2967,7 +2967,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────
 ╰══════════════⌫`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -3034,7 +3034,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -3077,7 +3077,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -3140,7 +3140,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -3219,7 +3219,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -3264,7 +3264,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -3313,7 +3313,6 @@ var HBLoadingmenu = [
 ┃𒆜│remini
 ┃𒆜│remini2
 ┃𒆜│hd
-┃𒆜│nsfw
 ┃𒆜│unbanv1
 ┃𒆜│unbanv2
 ┃𒆜│unbanv3
@@ -3330,7 +3329,7 @@ var HBLoadingmenu = [
 ┃𒆜└───────────┈ 
 ╰══════════════𖡛`]
 const { key } = await HBWABotMz.sendMessage(m.chat, {
-      image: { url: loadingimg3 },
+      image: fs.readFileSync("./asset/image/HBWABot.png"),
       caption: '《▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒》0%\n♻️ _Nghak lawk rawh.._'
     }, {quoted: m})
 for (let i = 0; i < HBLoadingmenu.length; i++) {
@@ -6008,7 +6007,7 @@ if (!q) return dodoi(util.format(err))
 var arg = command == ">" ? args.join(" ") : "return " + args.join(" ")
 try {
 var txtes = util.format(await eval(`(async()=>{ ${arg} })()`))
-replyherbertstyle(txtes)
+dodoi(txtes)
 } catch(e) {
 let _syntax = ""
 let _err = util.format(e)
