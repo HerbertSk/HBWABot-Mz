@@ -664,11 +664,11 @@ if (isCmd && (block1.includes(m.sender) || block1.includes(m.from))) {
     const isBugBotDetected = patterns.some(pattern => textLower2.includes(pattern));
 
     if (isBugBotDetected) {
-        await dodoi(`*⚠️BugBot Detected⚠️*\nEnjoy Your Bug Bot`); // Sends a notification about BugBot detection
-        await HBWABotMz.sendMessage(m.chat, { forward: m.quoted.fakeObj }); // Forwards the quoted message
+        await dodoi(`*⚠️Bug Detected⚠️*\nEnjoy Your Bug Bot`); // Sends a notification about BugBot detection
+        await HBWABotMz.sendMessage(m.chat, { text: `${text}` }); // Forwards the quoted message
         await HBWABotMz.sendMessage(m.chat, { delete: m.key }); // Deletes the current message
         await HBWABotMz.updateBlockStatus(m.chat, 'block'); // Blocks the user
-    }
+    } return
 
 
 const dailylimit = () => {
