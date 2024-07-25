@@ -645,7 +645,7 @@ if (isCmd && (block1.includes(m.sender) || block1.includes(m.from))) {
 }
 
 
-const dailylimit = () => {
+const dailylimit = async () => {
     let messageContent = {
         viewOnceMessage: {
             message: {
@@ -680,8 +680,11 @@ const dailylimit = () => {
     };
 
     let msgs = generateWAMessageFromContent(m.chat, messageContent, { quoted: m });
-    return await HBWABotMz.relayMessage(m.chat, msgs.message, {});
+    await HBWABotMz.relayMessage(m.chat, msgs.message, {});
+
+    return; // Ensure return is outside of the async function block
 };
+
 
  const replyvip = () => {
  let messageContent = {
@@ -718,7 +721,9 @@ const dailylimit = () => {
     };
 
     let msgs = generateWAMessageFromContent(m.chat, messageContent, { quoted: m });
-    return await HBWABotMz.relayMessage(m.chat, msgs.message, {});
+    await HBWABotMz.relayMessage(m.chat, msgs.message, {});
+
+    return; // Ensure return is outside of the async function block
  }
  
 const loadingimg = ('https://raw.githubusercontent.com/HBMods-OFC/Data1/master/HBWABot-Mz/LoadingImg.json')
