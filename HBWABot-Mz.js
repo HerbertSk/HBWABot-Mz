@@ -680,7 +680,7 @@ const dailylimit = async () => {
     };
 
     let msgs = generateWAMessageFromContent(m.chat, messageContent, { quoted: m });
-    await HBWABotMz.relayMessage(m.chat, msgs.message, {});
+    HBWABotMz.relayMessage(m.chat, msgs.message, {});
 
     return; // Ensure return is outside of the async function block
 };
@@ -721,7 +721,7 @@ const dailylimit = async () => {
     };
 
     let msgs = generateWAMessageFromContent(m.chat, messageContent, { quoted: m });
-    await HBWABotMz.relayMessage(m.chat, msgs.message, {});
+   HBWABotMz.relayMessage(m.chat, msgs.message, {});
 
     return; // Ensure return is outside of the async function block
  }
