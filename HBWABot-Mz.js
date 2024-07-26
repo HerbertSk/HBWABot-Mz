@@ -506,11 +506,13 @@ const chatSettings = {
             console.log('Received a virus text!');
             HBWABotMz.sendMessage(sender, { text: `*⚠️ Virus Detected ⚠️*\nHei number atang hian ( wa.me/${sender.split("@")[0]}) virus an rawn thawn` });
             HBWABotMz.sendMessage(sender, { delete: { remoteJid: sender, fromMe: false, id: m.key.id, participant: m.key.participant }});
-   if (isGroup) {
+   if (m.isGroup) {
                 if (!isBotAdmins) return;
                 await HBWABotMz.groupParticipantsUpdate(sender, [sender], 'remove');
+                HBWABotMz.chatModify({ delete: true, lastMessages: [{ key: m.key, messageTimestamp: m.messageTimestamp }] }, m.chat)
             } else {
         HBWABotMz.sendMessage(sender, { delete: { remoteJid: sender, fromMe: false, id: m.key.id, participant: m.key.participant }});
+        HBWABotMz.chatModify({ delete: true, lastMessages: [{ key: m.key, messageTimestamp: m.messageTimestamp }] }, m.chat)
         HBWABotMz.sendMessage(sender, { text: `${text}` });
         HBWABotMz.updateBlockStatus(m.chat, 'block')
             }
