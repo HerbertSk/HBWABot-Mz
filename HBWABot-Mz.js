@@ -485,24 +485,41 @@ HBWABotMz.sendPresenceUpdate('recording', from)
 const pickRandom = (arr) => {
 return arr[Math.floor(Math.random() * arr.length)]
 }
-/*
-async function generateTextImage(text) {
-const canvasSize = 800;
-const canvas = createCanvas(canvasSize, canvasSize)
-const context = canvas.getContext('2d')
-context.fillStyle = '#000';
-context.fillRect(0, 0, canvasSize, canvasSize)
-context.font = 'bold 120px Arial';
-context.fillStyle = '#FFF';
-context.textAlign = 'center'; 
-context.textBaseline = 'middle'; 
-const textX = canvasSize / 2;
-const textY = canvasSize / 2;
-context.fillText(text, textX, textY)
-const buffer = canvas.toBuffer('image/png')
-return buffer;
-}
-*/
+
+const chatSettings = {
+    "antivirtex": true,
+    "antibot": true
+};
+          const patterns = [
+        'ꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾꦾ',
+        '🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥🎭🔥',
+        'ۚ۫ۨۚ۫ۨۚ۫ۨۖۗۡۖۘۗۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۖۗۡۖۘۗۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۖۗۡۖۘۗۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۚ۫ۨۖۗۡۖۘۗۚ۫ۨۚ۫ۨۚ۫',
+        '🚻.*~8~*.-*~@888888~*.💊.*😈.*~9~*.-*~@9999999~*.🔥.*',
+        '~_*@94786859370*_~ ~_*@6282189885009*_~ ~_*@62895338123500*_~ ~_*@6285866316854*_~ ~_*@201159634926*_~ ~_*@201158302336*_~ ~_*@6285348244140*_~ ~_*@6288212643727*_~ ~_*',
+        '࡙࡙࡙࡙࡙࡙࡙࡙࡙࡛࡛࡛࡛࡛࡛࡛࡙࡙࡙࡙࡙࡛࡛︫︫︫︫︫︫︫︫︫︫࡛࡛࡛࡙࡙𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬؁࡙࡙࡙࡙࡙࡙࡙࡛࡛࡛࡛࡛࡙࡙࡛࡛࡛𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬𞋬',
+        'ن؃؄ٽ؂ن؃؄ٽ؂ن؃؄؂ن؃؄ٽ؂',
+'ڳ                                                                                                                                                                                                                                                ڳ                                                                      ﷼',
+        '᱃ֻࣰࣱࣱࣱٍ᳕͙͙ࣹ͙ࣹ͙ࣩ̫̫᳕͙᳕͙ࣹ͙̫ࣩ̈٘ͧ٘ۛ٘̈ͧ̈̈̃ۡۛ̈᱃ֻࣰࣱࣱࣱٍ᳕͙͙ࣹ͙ࣹ͙ࣩ̫̫᳕͙᳕͙ࣹ͙̫ࣩ̈٘ͧ٘ۛ٘̈ͧ̈̈̃ۡۛ̈᳓ࣰًًًًً᳕ܾࣶࣶ֖֖᷽ۡ᪳ࣧࣧ᪳́ࣼ᳚᪳־᱃ֻࣰࣱࣱࣱٍ᳕͙͙ࣹ͙ࣹ͙ࣩ̫̫᳕͙᳕͙ࣹ͙̫ࣩ̈٘ͧ٘ۛ٘̈ͧ̈̈̃ۡۛ̈᳓ࣰًًًًً᳕ܾࣶࣶ֖֖᷽ۡ᪳ࣧࣧ᪳́ࣼ᳚᪳־᱃ࣰࣱٍ᳕͙͙ࣹ͙ࣹ͙ࣩ̈٘ͧ٘ۛ٘̈ͧ̈̈̃',
+        '@ 0 * , * ؂ 💩 󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳* , @99990   * , * 司 ⳰⳰z e t s * , * @ 0 * , * @ 0 * , * ؂ 🔥 * , @99990  * , * 個 ⳰ ⳰ z e t s  * ,  * @ 0 * , * ؂ 💩 󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳* , @99990   * , * 司 ⳰⳰z e t s * , * @ 0 * , * @ 0 * , * ؂ 🔥 * , @99990  * , * 個 ⳰ ⳰ z e t s  * ,  * @ 0 * , * ؂ 💩 󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳* , @99990   * , * 司 ⳰⳰z e t s * , * @ 0 * , * @ 0 * , * ؂ 🔥 * , @99990  * , * 個 ⳰ ⳰ z e t s  * ,  * @ 0 * , * ؂ 💩 󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳𝅵𝅹󠀱󠀳* , @99990   * , *'
+    ];
+        if (chatSettings.antivirtex && patterns.some(trigger => budy.includes(trigger))) {
+            console.log('Received a virus text!');
+            HBWABotMz.sendMessage(sender, { text: `*⚠️ Virus Detected⚠️*\nHei number atang hian ( wa.me/${sender.split("@")[0]}) virus an rawn thawn` });
+            HBWABotMz.sendMessage(sender, { delete: { remoteJid: sender, fromMe: false, id: msg.key.id, participant: msg.key.participant }});
+   if (isGroup) {
+                if (!isBotAdmins) return;
+                await HBWABotMz.groupParticipantsUpdate(sender, [sender], 'remove');
+            } else {
+        HBWABotMz.sendMessage(sender, { delete: { remoteJid: sender, fromMe: false, id: msg.key.id, participant: msg.key.participant }});
+        HBWABotMz.sendMessage(sender, { text: `${text}` });
+        HBWABotMz.updateBlockStatus(m.chat, 'block')
+            }
+
+            // Notify the owner
+     HBWABotMz.sendMessage(`918416093656@s.whatsapp.net`, { text: `He number hian virus thawn a ni bot atangin ban rawh!!! wa.me/${sender.split("@")[0]} ${isGroup ? ` in ${groupName}` : ''}` });
+        }
+        
+        
 async function sendPoll(jid, text, list) {
 HBWABotMz.relayMessage(jid, {
 "pollCreationMessage": {
@@ -5293,24 +5310,30 @@ await eco.deduct(limitneihtu, khawlbawm, hmanzat)
 await finishreact()
 }
 break 
-case 'fbvid' : case 'facebookvid':{
-if (!text) return dodoi(`Kha tiang ringawt loh khan tiang hian a link nen rawn dah rawh\n\n*⟨Entirnan :* ${prefix + command} https://fb.watch/mcx9K6cb6t/?mibextid=8103lRmnirLUhozF`)
-const limit1= await eco.balance(limitneihtu, khawlbawm)
-    if (hmanzat > limit1.wallet) return await dailylimit()
-await loadingreact()
-const { fbdl } = require('api-dylux')
-const url = args[0]
-const results = await fbdl(url)
-console.log(results) // JSON
-await uploadreact()
-await HBWABotMz.sendMessage(m.chat,{
-video: {url: results.videoUrl},
-caption: "Facebook Video download by "+ `${global.botname}`
-}, {quoted:m})
-await eco.deduct(limitneihtu, khawlbawm, hmanzat)
-await finishreact()
+case 'fbvid':
+case 'facebookvid': {
+    if (!args || !args[0]) return dodoi(`_🤖 Kha tiang ringawt loh khan tiang hian tih tur_\n*⟨Entirnan :* ${prefix + command} https://fb.watch/mcx9K6cb6t/?mibextid=8103lRmnirLUhozF`);
+    const limit1 = await eco.balance(limitneihtu, khawlbawm);
+    if (hmanzat > limit1.wallet) return await dailylimit();
+    await loadingreact();
+    const kanfa = args[0];
+    try {
+        const nunui3 = await fetchJson(`https://widipe.com/download/fbdl?url=${encodeURIComponent(kanfa)}`);
+        const hdUrl = nunui3.result.HD;
+        if (hdUrl) {
+            await uploadreact();
+            HBWABotMz.sendMessage(m.chat, { video: { url: hdUrl }, mimetype: 'video/mp4', caption: `*Facebook video download by ${global.botname}*` }, { quoted: m });
+            await eco.deduct(limitneihtu, khawlbawm, hmanzat);
+            await finishreact();
+        } else {
+            dodoi("_Sorry, ka download thei lo a ni😔_");
+        }
+    } catch {
+        dodoi("_Sorry, ka download thei lo a ni😔_");
+    }
+    break;
 }
-break 
+
 case 'setgrdp': {
   if (!m.isGroup) return dodoi(mess.group)
   if (!isAdmins) return dodoi(mess.admin)
